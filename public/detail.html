@@ -25,16 +25,41 @@
     <div id="comment">
 
     </div>
+    <input type="text" id="mess" onkeypress="enterComment(event)">
+    <button onClick="addComment()">Add Comment</button>
   </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
+  function enterComment(event) {
+    if (event.keyCode == 13) {
+      addComment();
+    }
+  }
+  function addComment() {
+    let mess = $('#mess').val();
+    $.ajax({
+      url: '/comments',
+      type: 'POST',
+      data: {
+        content: mess,
+        post: '5f5dd60481d82a3620516a0f'
+      }
+    })
+      .then(data => {
+        $('#comment').append(`<p>${mess}</p>`);
+        $('#mess').val('');
+      })
+      .catch(err => {
+
+      })
+  }
+
   $.ajax({
     url: 'posts',
     type: 'GET'
   })
     .then(data => {
-      console.log(data);
       let firstPost = data[0];
       document.getElementById('content').innerHTML =
         marked(`${firstPost.content}`);
