@@ -16,13 +16,24 @@
     "content": {
       "type": "richtext"
     },
-    "createdDate": {
-      "type": "datetime"
-    },
     "author": {
       "plugin": "users-permissions",
       "model": "user",
       "via": "posts"
+    },
+    "thumbnail": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "description": {
+      "type": "string"
     }
   }
 }
