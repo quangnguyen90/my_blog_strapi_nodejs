@@ -1,2 +1,3 @@
-# my_blog_strapi_nodejs
-An example blog website using strapi, nodejs
+# Strapi application
+
+A quick description of your strapi application
