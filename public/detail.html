@@ -21,6 +21,10 @@
     <div class="row" id="content">
 
     </div>
+    <h2>Comments</h2>
+    <div id="comment">
+
+    </div>
   </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -30,9 +34,14 @@
     type: 'GET'
   })
     .then(data => {
+      console.log(data);
       let firstPost = data[0];
       document.getElementById('content').innerHTML =
         marked(`${firstPost.content}`);
+
+      firstPost.comments.forEach(cmt => {
+        $('#comment').append(`<p>${cmt.content}</p>`);
+      });
     })
     .catch(err => {
 
